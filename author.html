@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+ <title>Author</title>
+<body>
+
+<h2>Author Entry Nikhila Mateti</h2>
+
+<form>
+    <label for="author_name">The hidden author name</label>
+    <input type ="password" id="form1_pass" name="form1_pass" value="Dickens"> <br>
+    <label for="form1_check">Guess the author</label>
+    <input type ="text" id="form1_check" name="form1_check"> <br>
+    <input type="button" onclick="checkAuthor()" value="Check the guess">
+</form>
+<p id="result">Good: <span id="good">0</span> Oops: <span id="oops">0</span></p>
+<script> 
+var good=0;
+var oops=0; 
+function checkAuthor(){
+    password = document.getElementById("form1_pass").value
+    text = document.getElementById("form1_check").value
+    goodCount = document.getElementById("good")
+    oopsCount = document.getElementById("oops")
+    out = document.getElementById("result")
+    if(password===text){
+        good++
+        alert("You got it right")
+        goodCount.innerHTML = good
+    } else {
+        oops++
+        alert("oops sorry")
+        oopsCount.innerHTML = oops
+    }
+}
+</script>
+
+</body>
+</html> 
