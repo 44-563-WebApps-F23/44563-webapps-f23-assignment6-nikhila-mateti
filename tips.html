@@ -13,18 +13,23 @@
 
     <label for="form1_tip">Enter the tip percent </label>
     <input type ="number" id="form1_tip" name="form1_tip" value=15> <br>
+    
+    <input type="radio" id="rg1_sum" name="calc" value="sum" onclick="chooseOp()">
+    <label for="rg1_sum">Sum</label></br>
+
+    <input type="radio" id="rg2_diff" name="calc" value="diff" onclick="chooseOp()">
+    <label for="rg2_diff">Diff</label></br>
+
+    <input type="radio" id="rg3_mult" name="calc" value="mult" onclick="chooseOp()">
+    <label for="rg3_mult">Mult</label></br>
 
     <input type="button" onclick="tips()" value="Show tip">
 </form>
-
-
 <p id="result">Tips are: </p>
-
+<p id="results">calculations are </p>
 <script> 
-
 function tips (){
     var myOutput="";
-    console.log("Getting form values")
     var amt = parseFloat(document.getElementById("form1_amt").value);
     var tip = parseFloat(document.getElementById("form1_tip").value);
     for(let i=0;i<5;i++){
@@ -33,9 +38,31 @@ function tips (){
                 myOutput += `${tip}% is ${calculatedTip.toFixed(1)}; `;
                 tip += 4;
             }
-            document.getElementById("result").innerHTML = myOutput;
+            document.getElementById("result").innerHTML ="Tip are:"+ myOutput;
         }
+        function chooseOp(){
+            var amt = parseInt(document.getElementById("form1_amt").value);
+            var tip = parseInt(document.getElementById("form1_tip").value);
+            var cal = 0;
+            var op = "";
+            sum = document.getElementById("rg1_sum").checked
+            diff = document.getElementById("rg2_diff").checked
+            mult = document.getElementById("rg3_mult").checked
+            if(sum){
+                cal = amt+tip
+                op = "sum of "+amt+" and "+tip+" is "+cal;
+            }
+            else if(diff){
+                cal = amt-tip;
+                op = "diff of "+amt+" and "+tip+" is "+cal;
+            }
+            else{
+                cal = amt*tip;
+                op = "product of "+amt+" and "+tip+" is "+cal;
+            }
 
+            document.getElementById("results").innerHTML = op;
+        }
 </script>
 
 </body>
