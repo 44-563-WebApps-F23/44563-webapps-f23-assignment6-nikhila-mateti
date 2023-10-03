@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <title>Author Tips</title>
+ </head>
+<body>
+
+<h2>Nikhila Mateti shows tip amount</h2>
+
+<form>
+    <label for="form1_amt">Enter base amount </label>
+    <input type ="number" id="form1_amt" name="form1_amt" value=50> <br>
+
+    <label for="form1_tip">Enter the tip percent </label>
+    <input type ="number" id="form1_tip" name="form1_tip" value=15> <br>
+
+    <input type="button" onclick="tips()" value="Show tip">
+</form>
+
+
+<p id="result">Tips are: </p>
+
+<script> 
+
+function tips (){
+    var myOutput="";
+    console.log("Getting form values")
+    var amt = parseFloat(document.getElementById("form1_amt").value);
+    var tip = parseFloat(document.getElementById("form1_tip").value);
+    for(let i=0;i<5;i++){
+        var calculatedTip = amt * (tip / 100);
+
+                myOutput += `${tip}% is ${calculatedTip.toFixed(1)}; `;
+                tip += 4;
+            }
+            document.getElementById("result").innerHTML = myOutput;
+        }
+
+</script>
+
+</body>
+</html> 
