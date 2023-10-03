@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
+<head>
  <title>Author</title>
+</head>
 <body>
 
 <h2>Author Entry Nikhila Mateti</h2>
@@ -13,9 +15,13 @@
     <input type="button" onclick="checkAuthor()" value="Check the guess">
 </form>
 <p id="result">Good: <span id="good">0</span> Oops: <span id="oops">0</span></p>
+<div class="image-container" >
+    <img src="indore.jpg" alt="indore" height="100" weight="100" onclick="selectImage()" id="indore">
+</div>
 <script> 
 var good=0;
 var oops=0; 
+var useImage=1;
 function checkAuthor(){
     password = document.getElementById("form1_pass").value
     text = document.getElementById("form1_check").value
@@ -30,6 +36,23 @@ function checkAuthor(){
         oops++
         alert("oops sorry")
         oopsCount.innerHTML = oops
+    }
+}
+
+function selectImage(){
+    switch(useImage){
+        case 1: 
+            document.getElementById('indore').src = 'Milan.jpg';
+            useImage = 2;
+            break;
+        case 2: 
+            document.getElementById('indore').src = 'toronto.jpg';
+            useImage = 3;
+            break;
+        case 3: 
+            document.getElementById('indore').src = 'indore.jpg';
+            useImage = 1;
+            break;
     }
 }
 </script>
