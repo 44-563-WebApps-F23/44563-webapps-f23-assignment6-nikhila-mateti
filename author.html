@@ -2,22 +2,33 @@
 <html>
 <head>
  <title>Author</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+ 
 </head>
 <body>
 
 <h2>Author Entry Nikhila Mateti</h2>
 
-<form>
-    <label for="author_name">The hidden author name</label>
-    <input type ="password" id="form1_pass" name="form1_pass" value="Dickens"> <br>
-    <label for="form1_check">Guess the author</label>
-    <input type ="text" id="form1_check" name="form1_check"> <br>
-    <input type="button" onclick="checkAuthor()" value="Check the guess">
+<form class="row g-3">
+    <div class="col-auto">
+        <label for="author_name" class="form-label">The hidden author name</label>
+        <input type ="password" id="form1_pass" name="form1_pass" value="Dickens"> <br>
+    </div>
+    <div class="col-auto">
+        <label for="form1_check" class="form-label">Guess the author</label>
+        <input type ="text" id="form1_check" name="form1_check"> <br>
+    </div>
+    <div class="col-auto">
+    <input type="button" class="btn btn btn-dark" id="btn" onclick="checkAuthor()" value="Check the guess">
+</div>
 </form>
 <p id="result">Good: <span id="good">0</span> Oops: <span id="oops">0</span></p>
+<div id="incorrectResults"></div>
 <div class="image-container" >
     <img src="indore.jpg" alt="indore" height="100" weight="100" onclick="selectImage()" id="indore">
 </div>
+
 <script> 
 var good=0;
 var oops=0; 
@@ -28,15 +39,27 @@ function checkAuthor(){
     goodCount = document.getElementById("good")
     oopsCount = document.getElementById("oops")
     out = document.getElementById("result")
-    if(password===text){
+    if(oops>=7){
+        wrongMethod()
+    }
+    else if(password===text){
         good++
+
         alert("You got it right")
         goodCount.innerHTML = good
     } else {
-        oops++
-        alert("oops sorry")
+        oops+=1
         oopsCount.innerHTML = oops
+        alert("oops sorry")
+        
     }
+    document.getElementById('form1_check').value = "";
+    
+}
+function wrongMethod()
+{
+    alert("Sorry, ran out of guesses.")
+    document.getElementById("btn").disabled=true  
 }
 function selectImage(){
     switch(useImage){
